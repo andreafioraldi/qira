@@ -38,7 +38,7 @@ import qira_log
 LIMIT = 0
 
 from flask import Flask, Response, redirect, request
-from flask.ext.socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit
 
 # http://stackoverflow.com/questions/8774958/keyerror-in-module-threading-after-a-successful-py-test-run
 import threading
@@ -431,7 +431,7 @@ def run_server(largs, lprogram):
   print "****** starting WEB SERVER on %s:%d" % (qira_config.HOST, qira_config.WEB_PORT)
   threading.Thread(target=mwpoller).start()
   try:
-    socketio.run(app, host=qira_config.HOST, port=qira_config.WEB_PORT, log=open("/dev/null", "w"))
+    socketio.run(app, host=qira_config.HOST, port=qira_config.WEB_PORT)
   except KeyboardInterrupt:
     print "*** User raised KeyboardInterrupt"
     exit()
